@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kalkulator Sederhana</title>
+  </head>
+  <body>
+    <script>
+      let angka1 = parseFloat(prompt("Masukkan angka pertama: "));
+      let angka2 = parseFloat(prompt("Masukkan angka kedua:"));
+      let operasi = prompt("Pilih operasi [+, -, *, /]:");
+      let hasil;
+
+      if (operasi == "+") {
+        hasil = angka1 + angka2;
+      } else if (operasi == "-") {
+        hasil = angka1 - angka2;
+      } else if (operasi == "*" || operasi == "x") {
+        hasil = angka1 * angka2;
+      } else if (operasi == "/") {
+        hasil = angka1 / angka2;
+      } else {
+        hasil = "Operasi tidak valid";
+      }
+
+      alert("Hasil: " + hasil);
+    </script>
+  </body>
+</html>
