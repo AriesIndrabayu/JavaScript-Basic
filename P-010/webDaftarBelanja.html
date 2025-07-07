@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Aplikasi Daftar Belanja</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+      }
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        margin-top: 10px;
+      }
+      th,
+      td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+      }
+      th {
+        background-color: #f2f2f2;
+      }
+      .statistik {
+        margin-top: 20px;
+      }
+      .hapus-btn {
+        color: red;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>🛒 Aplikasi Daftar Belanja</h1>
+
+    <h3>Tambah Item</h3>
+    <input type="text" id="nama" placeholder="Nama barang" />
+    <input type="number" id="jumlah" placeholder="Jumlah" />
+    <input type="text" id="kategori" placeholder="Kategori" />
+    <button onclick="tambahItem()">Tambah</button>
+
+    <h3>Daftar Belanja</h3>
+    <input
+      type="text"
+      id="cari"
+      placeholder="Cari nama/kategori"
+      oninput="cariItem()"
+    />
+    <table>
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>Nama</th>
+          <th>Jumlah</th>
+          <th>Kategori</th>
+          <th>Aksi</th>
+        </tr>
+      </thead>
+      <tbody id="tabel-belanja"></tbody>
+    </table>
+
+    <div class="statistik" id="statistik"></div>
+
+    <script>
+      let daftarBelanja = [];
+
+      // Fungsi Tampil Tabel
+      const renderTabel = (data = daftarBelanja) => {
+        const tbody = document.getElementById("tabel-belanja");
+        tbody.innerHTML = "";
+
+        if (data.length === 0) {
+          tbody.innerHTML = `<tr><td colspan="5" align="center">Belum ada item.</td></tr>`;
+          return;
+        }
+
+        data.forEach((item, i) => {
+          tbody.innerHTML += `
+      <tr>
+        <td>${i + 1}</td>
+        <td>${item.nama}</td>
+        <td>${item.jumlah}</td>
+        <td>${item.kategori}</td>
+        <td><span class="hapus-btn" onclick="hapusItem(${i})">Hapus</span></td>
+      </tr>
+    `;
+        });
+
+        tampilkanStatistik();
+      };
+
+      // Fungsi Tambah Item
+      const tambahItem = () => {
+        const nama = document.getElementById("nama").value.trim();
+        const jumlah = parseInt(document.getElementById("jumlah").value);
+        const kategori = document.getElementById("kategori").value.trim();
+
+        if (!nama || isNaN(jumlah) || jumlah <= 0 || !kategori) {
+          alert("Mohon isi semua kolom dengan benar.");
+          return;
+        }
+
+        daftarBelanja.push({ nama, jumlah, kategori });
+        /*
+        ini konsep shorthand property di Javascript.
+        kode diatas bentuk singkatan (shorthand) dari:
+        data.push({
+            "nama": nama,
+            "jumlah": jumlah,
+            "kategori": kategori
+        });
+        Karena nama property dan variabelnya sama persis, jadi boleh disingkat.
+        ✅ Kalau Nama Property Beda, Harus Ditulis Manual
+        cotoh:
+        data.push({
+            "nama_barang": nama,
+            "total": jumlah,
+            "tipe": kategori
+        });
+        Kesimpulan:
+        ✔ Cara singkat { nama, jumlah, kategori } itu sah dan umum dipakai di Javascript modern (ES6+)
+        ✔ Kalau mau lebih eksplisit atau nama property beda, pakai cara lengkap: { "nama": nama, "jumlah": jumlah, "kategori": kategori }
+        ✔ Di console hasilnya SAMA PERSIS, cuma beda gaya penulisannya aja
+        Mayoritas programmer Javascript zaman sekarang pakai cara singkat biar kode lebih ringkas dan rapi, apalagi kalau property dan variabelnya memang sama.
+        */
+        renderTabel();
+        document.getElementById("nama").value = "";
+        document.getElementById("jumlah").value = "";
+        document.getElementById("kategori").value = "";
+      };
+
+      //   Fungsi Hapus Item
+      const hapusItem = (index) => {
+        if (confirm(`Yakin hapus item "${daftarBelanja[index].nama}"?`)) {
+          daftarBelanja.splice(index, 1);
+          renderTabel();
+        }
+      };
+
+      //   Fungsi Cari Item
+      const cariItem = () => {
+        const keyword = document.getElementById("cari").value.toLowerCase();
+        const hasil = daftarBelanja.filter(
+          (item) =>
+            item.nama.toLowerCase().includes(keyword) ||
+            item.kategori.toLowerCase().includes(keyword)
+        );
+        renderTabel(hasil);
+      };
+      //   Fungsi Statistik
+      const tampilkanStatistik = () => {
+        const statistik = {};
+        daftarBelanja.forEach((item) => {
+          statistik[item.kategori] =
+            (statistik[item.kategori] || 0) + item.jumlah;
+        });
+
+        const divStat = document.getElementById("statistik");
+        if (daftarBelanja.length === 0) {
+          divStat.innerHTML = "";
+          return;
+        }
+
+        let output = `<h3>Statistik Kategori</h3><ul>`;
+        for (const kategori in statistik) {
+          output += `<li>${kategori}: ${statistik[kategori]} item</li>`;
+        }
+        output += `</ul>`;
+        divStat.innerHTML = output;
+      };
+
+      //   Panggilan Awal
+
+      renderTabel();
+    </script>
+  </body>
+</html>
