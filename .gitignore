@@ -9,3 +9,10 @@ P-011/package-lock.json
 node_modules
 package.json
 package-lock.json
+P-013/main.py
+P-013/requirements.txt
+P-013/crud/note_crud.py
+P-013/database/connection.py
+P-013/models/note_model.py
+P-013/routes/note_routes.py
+P-013/schemas/note_schema.py
