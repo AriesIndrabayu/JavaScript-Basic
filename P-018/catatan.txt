@@ -1,0 +1,51 @@
+npm init -y
+npm install express
+
+{
+    "nama": "Dudung",
+    "usia": 25
+}
+
+app.post("/user", (req, res) =>{
+    console.log(req.body.nama) // --> "Dudung"
+})
+
+- pagnation --> page, size, total, has_next dll
+- filtering --> search
+- sorting --> sort_by & sort_dir (ASC/DESC)
+
+
+data => delete => hilang
+
+data aktif/tidak aktif
+data => softdelete ==> force delete = data hilang tabel
+                   ==> restore = dipulihkan
+
+
+
+FRONTEND
+catatan-node-api/
+├── frontend/
+│   ├── index.html                  ← Entry point utama (template SPA)
+│   ├── assets/
+│   │   ├── css/
+│   │   │   └── style.css           ← Custom styling
+│   │   ├── js/
+│   │   │   ├── api/
+│   │   │   │   └── catatanApi.js   ← Semua akses ke API catatan
+│   │   │   ├── pages/
+│   │   │   │   ├── list.js         ← Halaman list catatan
+│   │   │   │   ├── form.js         ← Halaman tambah/edit catatan
+│   │   │   ├── components/
+│   │   │   │   ├── navbar.js       ← Navbar SPA
+│   │   │   │   ├── table.js        ← Table renderer reusable
+│   │   │   ├── router.js           ← SPA Router (berbasis hash `#/list`, `#/form`)
+│   │   │   └── main.js             ← Entry JS untuk SPA logic
+│   │   └── libs/
+│   │       └── bootstrap.min.css   ← CDN fallback atau manual import
+│   └── templates/
+│       ├── list.html               ← Template HTML list catatan
+│       ├── form.html               ← Template HTML form catatan
+
+
+http://localhost:7000/catatan/#/form
