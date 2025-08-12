@@ -1,0 +1,38 @@
+<!-- frontend/templates/form.html -->
+
+<h2 id="formTitle">✏️ Tambah Catatan</h2>
+
+<form id="catatanForm" class="mt-3">
+  <div class="mb-3">
+    <label for="isi" class="form-label">Isi Catatan</label>
+    <textarea class="form-control" id="isi" rows="3" required></textarea>
+  </div>
+
+  <div class="mb-3">
+    <label for="kategori" class="form-label">Kategori</label>
+    <input
+      type="text"
+      class="form-control"
+      id="kategori"
+      placeholder="Misalnya: Belanja, Kerja, Ide"
+    />
+  </div>
+
+  <div class="mb-3">
+    <label for="keterangan" class="form-label">Keterangan</label>
+    <input
+      type="text"
+      class="form-control"
+      id="keterangan"
+      placeholder="Keterangan tambahan (opsional)"
+    />
+  </div>
+
+  <div class="form-check form-switch mb-3">
+    <input class="form-check-input" type="checkbox" id="status" checked />
+    <label class="form-check-label" for="status">Aktif</label>
+  </div>
+
+  <button type="submit" class="btn btn-primary">💾 Simpan</button>
+  <a href="#/list" class="btn btn-secondary">🔙 Kembali</a>
+</form>

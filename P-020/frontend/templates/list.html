@@ -1,0 +1,80 @@
+<!-- frontend/templates/list.html -->
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h2>📄 Daftar Catatan</h2>
+  <a href="#/form" class="btn btn-primary">+ Tambah Catatan</a>
+</div>
+
+<!-- 🔍 Filter/Search Bar -->
+<div class="row g-2 mb-3">
+  <div class="col-md-3">
+    <input
+      type="text"
+      class="form-control"
+      id="searchInput"
+      placeholder="Cari isi/kategori/keterangan..."
+    />
+  </div>
+  <div class="col-md-auto">
+    <!-- 🔢 Tampilkan Jumlah Data Per Halaman -->
+    <div class="input-group input-group-sm" style="width: auto">
+      <span class="input-group-text">Tampilkan:</span>
+      <select id="size-select" class="form-select" style="height: 38px">
+        <option value="5">5</option>
+        <option value="10" selected>10</option>
+        <option value="25">25</option>
+        <option value="50">50</option>
+        <option value="100">100</option>
+      </select>
+    </div>
+  </div>
+  <div class="col-md-2">
+    <select class="form-select" id="deletedFilter">
+      <option value="0">Aktif</option>
+      <option value="1">Terhapus</option>
+      <option value="all">Semua</option>
+    </select>
+  </div>
+  <div class="col-md-2">
+    <select class="form-select" id="sortBy">
+      <option value="updated_at">Sort by: Terakhir Diperbarui</option>
+      <option value="id">Sort by: ID</option>
+      <option value="kategori">Sort by: Kategori</option>
+    </select>
+  </div>
+  <div class="col-md-2">
+    <select class="form-select" id="sortDir">
+      <option value="desc">⬇️ Descending</option>
+      <option value="asc">⬆️ Ascending</option>
+    </select>
+  </div>
+  <div class="col-md-1">
+    <button id="" class="btn btn-success w-100">🔍</button>
+  </div>
+</div>
+
+<!-- 📄 Tabel Catatan -->
+<div class="table-responsive">
+  <table class="table table-bordered align-middle">
+    <thead class="table-dark">
+      <tr>
+        <th>ID</th>
+        <th>Isi</th>
+        <th>Kategori</th>
+        <th>Status</th>
+        <th>Updated</th>
+        <th>Aksi</th>
+      </tr>
+    </thead>
+    <tbody id="catatanTableBody">
+      <!-- Baris data akan dirender oleh JS -->
+    </tbody>
+  </table>
+</div>
+
+<!-- 🔢 Pagination -->
+<nav>
+  <ul class="pagination justify-content-center" id="pagination">
+    <!-- Halaman akan di-render di sini -->
+  </ul>
+</nav>

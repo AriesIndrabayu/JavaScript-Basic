@@ -1,0 +1,5 @@
+Beri Izin Eksekusi ke File:
+chmod +x frontend-start.sh
+
+Jalankan File:
+./frontend-start.sh

@@ -1,0 +1,123 @@
+### ✅ Create Catatan
+POST http://localhost:7000/api/v1/catatan
+Content-Type: application/json
+
+{
+  "isi": "Belajar Node.js REST API",
+  "kategori": "Belajar",
+  "keterangan": "Modul dasar CRUD",
+  "status": true
+}
+
+###
+
+### ❌ Tes Validasi Gagal - isi kosong
+POST http://localhost:7000/api/v1/catatan
+Content-Type: application/json
+
+{
+  "isi": "",
+  "kategori": "Catatan",
+  "keterangan": "Ini tidak valid",
+  "status": true
+}
+
+###
+
+### 📄 Get Semua Catatan (default: aktif, page 1, size 10)
+GET http://localhost:7000/api/v1/catatan
+
+###
+
+### 🔍 Get Catatan dengan Pagination (page 2, size 3)
+GET http://localhost:7000/api/v1/catatan?page=1&size=3
+
+### ❌ GET catatan - invalid page
+GET http://localhost:7000/api/v1/catatan?page=-5
+
+###
+
+
+### 🔍 Get Catatan dengan Search (cari 'node')
+GET http://localhost:7000/api/v1/catatan?search=node
+
+###
+
+### 🔍 Get Catatan dengan Sorting (by updated_at desc)
+GET http://localhost:7000/api/v1/catatan?sort_by=updated_at&sort_dir=desc
+
+###
+
+### ❌ GET catatan - sort_by tidak valid
+GET http://localhost:7000/api/v1/catatan?sort_by=judul
+
+###
+
+### 🔍 Get Semua Catatan termasuk soft deleted
+GET http://localhost:7000/api/v1/catatan?deleted=all
+
+###
+
+### 🔍 Get Hanya Catatan yang Terhapus (soft deleted)
+GET http://localhost:7000/api/v1/catatan?deleted=1
+
+###
+
+### 🔍 Get Hanya Catatan yang Belum Terhapus (aktif)
+GET http://localhost:7000/api/v1/catatan?deleted=0
+
+###
+
+### ❌ GET catatan - deleted tidak valid
+GET http://localhost:7000/api/v1/catatan?deleted=maybe
+
+###
+
+### 🔍 Gabungan Search + Pagination + Deleted = all
+GET http://localhost:7000/api/v1/catatan?page=1&size=5&search=belajar&sort_by=id&sort_dir=asc&deleted=all
+
+###
+
+### 🔍 Get Catatan By ID
+GET http://localhost:7000/api/v1/catatan/abc
+
+###
+
+### ✏️ Update Catatan
+PUT http://localhost:7000/api/v1/catatan/2
+Content-Type: application/json
+
+{
+  "isi": "Update - Belajar Knex.js",
+  "kategori": "Update",
+  "keterangan": "Menggunakan migrasi",
+  "status": true
+}
+
+###
+
+### ❌ Update - isi terlalu pendek (gagal validasi)
+PUT http://localhost:7000/api/v1/catatan/1
+Content-Type: application/json
+
+{
+  "isi": "A"
+}
+
+###
+
+### ❌ Soft Delete Catatan
+DELETE http://localhost:7000/api/v1/catatan/6
+
+
+###
+
+### 🔁 Restore Catatan
+PATCH http://localhost:7000/api/v1/catatan/restore/6
+
+###
+
+### ☠️ Force Delete Catatan
+DELETE http://localhost:7000/api/v1/catatan/force/3
+
+###
