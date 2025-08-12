@@ -1,0 +1,58 @@
+### Create Catatan
+POST http://localhost:5000/api/catatan
+Content-Type: application/json
+
+{
+    "isi": "Belajar Node.js REST API",
+    "kategori":"Belajar"
+}
+
+###
+
+### Create Catatan --> Tes Validasi Gagal
+POST http://localhost:5000/api/catatan
+Content-Type: application/json
+
+{
+    "isi": "",
+    "kategori":"Belajar"
+}
+
+###
+
+### Get All (tampilkan semua) Catatan
+GET http://localhost:5000/api/catatan
+
+###
+
+### Get By Id : tampilkan Catatan berdasarkan idnya
+GET http://localhost:5000/api/catatan/1
+
+###
+
+### Update Catatan
+PUT http://localhost:5000/api/catatan/1
+Content-Type: application/json
+
+{
+    "isi": "Update : Belajar Node.js REST API",
+    "kategori":"Update Lagi"
+}
+
+###
+
+### Update Catatan --> Cek validasi error
+PUT http://localhost:5000/api/catatan/1
+Content-Type: application/json
+
+{
+    "isi": "",
+    "kategori":"Update : Belajar"
+}
+
+###
+
+### Delete Catatan
+DELETE http://localhost:5000/api/catatan/1
+
+###

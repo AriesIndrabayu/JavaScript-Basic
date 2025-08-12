@@ -1,0 +1,11 @@
+npm init -y
+npm install express
+
+{
+    "nama": "Dudung",
+    "usia": 25
+}
+
+app.post("/user", (req, res) =>{
+    console.log(req.body.nama) // --> "Dudung"
+})
